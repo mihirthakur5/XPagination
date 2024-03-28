@@ -12,6 +12,9 @@ function App() {
       const res = await fetch(
         "https://geektrust.s3-ap-southeast-1.amazonaws.com/adminui-problem/members.json"
       );
+      if (!res.ok) {
+        throw new Error("failed to fetch data");
+      }
       const data = await res.json();
       setData(data);
       const totalPages = Math.ceil(data.length / 10);
@@ -70,13 +73,9 @@ function App() {
         </tbody>
       </table>
       <div className={styles.btns}>
-        <button onClick={handlePrev} disabled={currentPage === 1}>
-          Previous
-        </button>
+        <button onClick={handlePrev}>Previous</button>
         <button className={styles.pageNumber}>{currentPage}</button>
-        <button onClick={handleNext} disabled={currentPage === totalPages}>
-          Next
-        </button>
+        <button onClick={handleNext}>Next</button>
       </div>
     </div>
   );
