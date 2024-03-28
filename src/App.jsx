@@ -13,7 +13,7 @@ function App() {
         "https://geektrust.s3-ap-southeast-1.amazonaws.com/adminui-problem/members.json"
       );
       if (!res.ok) {
-        throw new Error("failed to fetch data");
+        alert("failed to fetch data");
       }
       const data = await res.json();
       setData(data);
